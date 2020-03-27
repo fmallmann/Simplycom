@@ -1,15 +1,21 @@
-package de.fma.simplycom.views
+package de.fma.simplycom.board.view
 
-import de.fma.simplycom.components.Icons
-import de.fma.simplycom.components.UppercaseLettersKeyboard
-import de.fma.simplycom.components.iconButton
-import de.fma.simplycom.controller.BoardController
-import de.fma.simplycom.model.Board
-import de.fma.simplycom.views.styles.BoardViewStyles
+import de.fma.simplycom.board.controller.BoardController
+import de.fma.simplycom.common.components.Icons
+import de.fma.simplycom.common.components.iconButton
+import de.fma.simplycom.board.model.Board
+import de.fma.simplycom.board.view.styles.BoardViewStyles
 import javafx.application.Platform
-import tornadofx.*
+import tornadofx.ItemViewModel
+import tornadofx.View
+import tornadofx.addClass
+import tornadofx.borderpane
+import tornadofx.center
+import tornadofx.left
+import tornadofx.textarea
+import tornadofx.vbox
 
-class BoardView : View("Simplycom") {
+class BoardView : View("Board") {
 
     private val controller: BoardController by inject()
     private val model = BoardModel(controller.board)
@@ -29,12 +35,10 @@ class BoardView : View("Simplycom") {
                 iconButton(Icons.EMAIL) {}
             }
         }
-        bottom {
-            add(find<UppercaseLettersKeyboard>())
-        }
     }
 }
 
 class BoardModel(board: Board) : ItemViewModel<Board>(board) {
     val text = bind(Board::textProperty)
 }
+

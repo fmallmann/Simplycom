@@ -1,4 +1,4 @@
-package de.fma.simplycom.components
+package de.fma.simplycom.common.components
 
 import javafx.event.EventTarget
 import javafx.scene.image.ImageView

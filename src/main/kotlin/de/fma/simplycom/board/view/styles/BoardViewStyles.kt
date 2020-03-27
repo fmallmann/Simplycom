@@ -1,4 +1,4 @@
-package de.fma.simplycom.views.styles
+package de.fma.simplycom.board.view.styles
 
 import javafx.scene.control.ScrollPane
 import tornadofx.*

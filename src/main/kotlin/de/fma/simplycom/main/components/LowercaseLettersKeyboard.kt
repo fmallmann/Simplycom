@@ -1,6 +1,12 @@
-package de.fma.simplycom.components
+package de.fma.simplycom.main.components
 
-import de.fma.simplycom.controller.BoardController
+import de.fma.simplycom.board.controller.BoardController
+import de.fma.simplycom.common.components.backspaceButton
+import de.fma.simplycom.common.components.enterButton
+import de.fma.simplycom.common.components.letterButton
+import de.fma.simplycom.common.components.numbersButton
+import de.fma.simplycom.common.components.shiftButton
+import de.fma.simplycom.common.components.spaceButton
 import tornadofx.Fragment
 import tornadofx.action
 import tornadofx.gridpane

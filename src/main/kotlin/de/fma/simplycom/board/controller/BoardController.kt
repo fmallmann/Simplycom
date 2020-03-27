@@ -1,6 +1,6 @@
-package de.fma.simplycom.controller
+package de.fma.simplycom.board.controller
 
-import de.fma.simplycom.model.Board
+import de.fma.simplycom.board.model.Board
 import tornadofx.Controller
 
 class BoardController : Controller() {

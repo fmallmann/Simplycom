@@ -1,4 +1,4 @@
-package de.fma.simplycom.components.styles
+package de.fma.simplycom.common.components.styles
 
 import tornadofx.Stylesheet
 import tornadofx.box

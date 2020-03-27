@@ -1,7 +1,7 @@
-package de.fma.simplycom.components
+package de.fma.simplycom.common.components
 
-import de.fma.simplycom.components.styles.BoardComponentStyles
-import de.fma.simplycom.model.Board
+import de.fma.simplycom.common.components.styles.BoardComponentStyles
+import de.fma.simplycom.board.model.Board
 import javafx.event.EventTarget
 import javafx.scene.control.ButtonBase
 import tornadofx.action

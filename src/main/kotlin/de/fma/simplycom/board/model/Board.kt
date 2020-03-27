@@ -1,4 +1,4 @@
-package de.fma.simplycom.model
+package de.fma.simplycom.board.model
 
 import javafx.beans.property.SimpleStringProperty
 import tornadofx.*
