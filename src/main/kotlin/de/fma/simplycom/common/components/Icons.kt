@@ -9,7 +9,11 @@ enum class Icons {
     SHIFT,
     BACKSPACE,
     EMAIL,
-    QUIT
+    QUIT,
+    ALL_SCROLL_UP,
+    ALL_SCROLL_DOWM,
+    SCROLL_UP,
+    SCROLL_DOWN
 }
 
 fun EventTarget.icon(icon: Icons): ImageView {
@@ -19,7 +23,27 @@ fun EventTarget.icon(icon: Icons): ImageView {
         Icons.BACKSPACE -> backspaceIcon()
         Icons.EMAIL -> emailIcon()
         Icons.QUIT -> quitIcon()
+        Icons.ALL_SCROLL_UP -> allScrollUpIcon()
+        Icons.ALL_SCROLL_DOWM -> allScrollDownIcon()
+        Icons.SCROLL_UP -> scrollUpIcon()
+        Icons.SCROLL_DOWN -> scrollDownIcon()
     }
+}
+
+fun EventTarget.scrollUpIcon(): ImageView {
+    return iconImageView("/assets/scroll.png", 180.0)
+}
+
+fun EventTarget.allScrollUpIcon(): ImageView {
+    return iconImageView("/assets/all_scroll.png", 180.0)
+}
+
+fun EventTarget.scrollDownIcon(): ImageView {
+    return iconImageView("/assets/scroll.png")
+}
+
+fun EventTarget.allScrollDownIcon(): ImageView {
+    return iconImageView("/assets/all_scroll.png")
 }
 
 fun EventTarget.quitIcon(): ImageView {
