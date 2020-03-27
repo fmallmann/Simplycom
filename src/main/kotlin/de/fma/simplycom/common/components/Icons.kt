@@ -8,7 +8,8 @@ enum class Icons {
     ENTER,
     SHIFT,
     BACKSPACE,
-    EMAIL
+    EMAIL,
+    QUIT
 }
 
 fun EventTarget.icon(icon: Icons): ImageView {
@@ -17,7 +18,12 @@ fun EventTarget.icon(icon: Icons): ImageView {
         Icons.SHIFT -> shiftIcon()
         Icons.BACKSPACE -> backspaceIcon()
         Icons.EMAIL -> emailIcon()
+        Icons.QUIT -> quitIcon()
     }
+}
+
+fun EventTarget.quitIcon(): ImageView {
+    return iconImageView("/assets/quit.png")
 }
 
 fun EventTarget.enterIcon(): ImageView {
