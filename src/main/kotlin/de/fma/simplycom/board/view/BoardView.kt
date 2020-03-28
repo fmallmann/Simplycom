@@ -1,23 +1,20 @@
 package de.fma.simplycom.board.view
 
+import de.fma.simplycom.board.components.boardTextArea
 import de.fma.simplycom.board.controller.BoardController
-import de.fma.simplycom.board.model.Board
-import de.fma.simplycom.board.view.styles.BoardViewStyles
+import de.fma.simplycom.board.model.BoardModel
 import de.fma.simplycom.common.components.Icons
 import de.fma.simplycom.common.components.iconButton
-import javafx.application.Platform
 import javafx.scene.control.TextArea
-import tornadofx.ItemViewModel
 import tornadofx.View
 import tornadofx.action
-import tornadofx.addClass
 import tornadofx.borderpane
 import tornadofx.bottom
 import tornadofx.center
+import tornadofx.hbox
 import tornadofx.left
 import tornadofx.right
 import tornadofx.singleAssign
-import tornadofx.textarea
 import tornadofx.top
 import tornadofx.vbox
 
@@ -30,17 +27,16 @@ class BoardView : View("Board") {
 
     override val root = borderpane {
         center {
-            textArea = textarea(model.text) {
-                addClass(BoardViewStyles.mainText)
-                isWrapText = true
-                textProperty().addListener { _, _, _ ->
-                    Platform.runLater(this::end)
-                }
-            }
+            textArea = boardTextArea(model)
         }
         left {
             vbox {
-                iconButton(Icons.EMAIL) {}
+                hbox {
+                    iconButton(Icons.TRASH) {
+                        action { controller.deleteAll() }
+                    }
+                    iconButton(Icons.EMAIL) {}
+                }
             }
         }
         right {
@@ -71,9 +67,5 @@ class BoardView : View("Board") {
             }
         }
     }
-}
-
-class BoardModel(board: Board) : ItemViewModel<Board>(board) {
-    val text = bind(Board::textProperty)
 }
 

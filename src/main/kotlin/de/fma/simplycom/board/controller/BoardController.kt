@@ -13,4 +13,8 @@ class BoardController : Controller() {
         Platform.exit();
         exitProcess(0);
     }
+
+    fun deleteAll() {
+        board.text = ""
+    }
 }

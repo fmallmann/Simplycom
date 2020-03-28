@@ -13,7 +13,8 @@ enum class Icons {
     ALL_SCROLL_UP,
     ALL_SCROLL_DOWM,
     SCROLL_UP,
-    SCROLL_DOWN
+    SCROLL_DOWN,
+    TRASH
 }
 
 fun EventTarget.icon(icon: Icons): ImageView {
@@ -27,7 +28,12 @@ fun EventTarget.icon(icon: Icons): ImageView {
         Icons.ALL_SCROLL_DOWM -> allScrollDownIcon()
         Icons.SCROLL_UP -> scrollUpIcon()
         Icons.SCROLL_DOWN -> scrollDownIcon()
+        Icons.TRASH -> trashIcon()
     }
+}
+
+fun EventTarget.trashIcon(): ImageView {
+    return iconImageView("/assets/trash.png")
 }
 
 fun EventTarget.scrollUpIcon(): ImageView {
