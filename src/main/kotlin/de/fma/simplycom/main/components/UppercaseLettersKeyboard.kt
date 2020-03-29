@@ -1,6 +1,5 @@
 package de.fma.simplycom.main.components
 
-import de.fma.simplycom.board.model.Board
 import de.fma.simplycom.common.components.backspaceButton
 import de.fma.simplycom.common.components.enterButton
 import de.fma.simplycom.common.components.letterButton
@@ -17,58 +16,56 @@ import tornadofx.style
 
 class UppercaseLettersKeyboard : View() {
 
-    private val board: Board by param()
-
     override val root = gridpane {
         row {
-            letterButton("Q", board)
-            letterButton("W", board)
-            letterButton("E", board)
-            letterButton("R", board)
-            letterButton("T", board)
-            letterButton("Z", board)
-            letterButton("U", board)
-            letterButton("I", board)
-            letterButton("O", board)
-            letterButton("P", board)
-            letterButton("7", board)
-            letterButton("8", board)
-            letterButton("9", board)
+            letterButton("Q")
+            letterButton("W")
+            letterButton("E")
+            letterButton("R")
+            letterButton("T")
+            letterButton("Z")
+            letterButton("U")
+            letterButton("I")
+            letterButton("O")
+            letterButton("P")
+            letterButton("7")
+            letterButton("8")
+            letterButton("9")
         }
         row {
-            letterButton("A", board)
-            letterButton("S", board)
-            letterButton("D", board)
-            letterButton("F", board)
-            letterButton("G", board)
-            letterButton("H", board)
-            letterButton("J", board)
-            letterButton("K", board)
-            letterButton("L", board)
-            letterButton("Ü", board)
-            letterButton("4", board)
-            letterButton("5", board)
-            letterButton("6", board)
+            letterButton("A")
+            letterButton("S")
+            letterButton("D")
+            letterButton("F")
+            letterButton("G")
+            letterButton("H")
+            letterButton("J")
+            letterButton("K")
+            letterButton("L")
+            letterButton("Ü")
+            letterButton("4")
+            letterButton("5")
+            letterButton("6")
         }
         row {
-            letterButton("Ä", board)
-            letterButton("SS", board)
-            letterButton("Y", board)
-            letterButton("X", board)
-            letterButton("C", board)
-            letterButton("V", board)
-            letterButton("B", board)
-            letterButton("N", board)
-            letterButton("M", board)
-            letterButton("Ö", board)
-            letterButton("1", board)
-            letterButton("2", board)
-            letterButton("3", board)
+            letterButton("Ä")
+            letterButton("SS")
+            letterButton("Y")
+            letterButton("X")
+            letterButton("C")
+            letterButton("V")
+            letterButton("B")
+            letterButton("N")
+            letterButton("M")
+            letterButton("Ö")
+            letterButton("1")
+            letterButton("2")
+            letterButton("3")
         }
         row {
             shiftButton {
                 action {
-                    val lowercaseLettersKeyboard = find<LowercaseLettersKeyboard>(mapOf("board" to board))
+                    val lowercaseLettersKeyboard = find<LowercaseLettersKeyboard>()
                     replaceWith(lowercaseLettersKeyboard)
                 }
                 style {
@@ -77,23 +74,23 @@ class UppercaseLettersKeyboard : View() {
             }
             numbersButton {
                 action {
-                    val numbersKeyboard = find<NumbersKeyboard>(mapOf("board" to board))
+                    val numbersKeyboard = find<NumbersKeyboard>()
                     replaceWith(numbersKeyboard)
                 }
             }
-            enterButton(board)
-            spaceButton(board) {
+            enterButton()
+            spaceButton() {
                 gridpaneConstraints {
                     columnSpan = 3
                 }
             }
-            backspaceButton(board)
-            letterButton(".", board)
-            letterButton(",", board)
-            letterButton("?", board)
-            letterButton("!", board)
-            letterButton(":", board)
-            letterButton("0", board)
+            backspaceButton()
+            letterButton(".")
+            letterButton(",")
+            letterButton("?")
+            letterButton("!")
+            letterButton(":")
+            letterButton("0")
         }
     }
 }

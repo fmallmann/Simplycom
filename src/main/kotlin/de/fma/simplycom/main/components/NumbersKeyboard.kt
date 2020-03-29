@@ -1,6 +1,5 @@
 package de.fma.simplycom.main.components
 
-import de.fma.simplycom.board.model.Board
 import de.fma.simplycom.common.components.backspaceButton
 import de.fma.simplycom.common.components.enterButton
 import de.fma.simplycom.common.components.letterButton
@@ -15,75 +14,73 @@ import tornadofx.row
 
 class NumbersKeyboard : View() {
 
-    private val board: Board by param()
-
     override val root = gridpane {
         row {
-            letterButton("1", board)
-            letterButton("2", board)
-            letterButton("3", board)
-            letterButton("4", board)
-            letterButton("5", board)
-            letterButton("6", board)
-            letterButton("7", board)
-            letterButton("8", board)
-            letterButton("9", board)
-            letterButton("0", board)
-            letterButton("=", board)
-            letterButton("*", board)
-            letterButton("_", board)
+            letterButton("1")
+            letterButton("2")
+            letterButton("3")
+            letterButton("4")
+            letterButton("5")
+            letterButton("6")
+            letterButton("7")
+            letterButton("8")
+            letterButton("9")
+            letterButton("0")
+            letterButton("=")
+            letterButton("*")
+            letterButton("_")
         }
         row {
-            letterButton("-", board)
-            letterButton("/", board)
-            letterButton(":", board)
-            letterButton(";", board)
-            letterButton("(", board)
-            letterButton(")", board)
-            letterButton("$", board)
-            letterButton("&", board)
-            letterButton("@", board)
-            letterButton("€", board)
-            letterButton("<", board)
-            letterButton(">", board)
-            letterButton("§", board)
+            letterButton("-")
+            letterButton("/")
+            letterButton(":")
+            letterButton(";")
+            letterButton("(")
+            letterButton(")")
+            letterButton("$")
+            letterButton("&")
+            letterButton("@")
+            letterButton("€")
+            letterButton("<")
+            letterButton(">")
+            letterButton("§")
         }
         row {
-            letterButton(".", board)
-            letterButton(",", board)
-            letterButton("?", board)
-            letterButton("!", board)
-            letterButton("'", board)
-            letterButton("\"", board)
-            letterButton("#", board)
-            letterButton("%", board)
-            letterButton("^", board)
-            letterButton("+", board)
-            letterButton("`", board)
-            letterButton("´", board)
-            letterButton("ß", board)
+            letterButton(".")
+            letterButton(",")
+            letterButton("?")
+            letterButton("!")
+            letterButton("'")
+            letterButton("\"")
+            letterButton("#")
+            letterButton("%")
+            letterButton("^")
+            letterButton("+")
+            letterButton("`")
+            letterButton("´")
+            letterButton("ß")
         }
         row {
             shiftButton {}
             lettersButton {
                 action {
-                    val lowercaseLettersKeyboard = find<LowercaseLettersKeyboard>(mapOf("board" to board))
+                    val lowercaseLettersKeyboard = find<LowercaseLettersKeyboard>()
                     replaceWith(lowercaseLettersKeyboard)
                 }
             }
-            enterButton(board)
-            spaceButton(board) {
+            enterButton()
+            spaceButton() {
                 gridpaneConstraints {
                     columnSpan = 3
                 }
             }
-            backspaceButton(board)
-            letterButton(".", board)
-            letterButton(",", board)
-            letterButton("?", board)
-            letterButton("!", board)
-            letterButton(":", board)
-            letterButton("0", board)
+            backspaceButton()
+            letterButton(".")
+            letterButton(",")
+            letterButton("?")
+            letterButton("!")
+            letterButton(":")
+            letterButton("0")
         }
     }
 }

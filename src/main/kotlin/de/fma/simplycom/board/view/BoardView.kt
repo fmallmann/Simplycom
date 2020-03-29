@@ -1,9 +1,7 @@
 package de.fma.simplycom.board.view
 
 import de.fma.simplycom.board.components.boardTextArea
-import de.fma.simplycom.board.controller.BoardController
-import de.fma.simplycom.board.model.Board
-import de.fma.simplycom.board.model.BoardModel
+import de.fma.simplycom.board.viewmodel.BoardViewModel
 import de.fma.simplycom.common.components.Icons
 import de.fma.simplycom.common.components.iconButton
 import de.fma.simplycom.common.components.scrollButtons
@@ -22,21 +20,18 @@ import tornadofx.vbox
 
 class BoardView : View("Board") {
 
-    private val controller: BoardController by inject()
-    private val board: Board by param()
-    private val model = BoardModel(board)
-
+    private val vm: BoardViewModel by inject()
     private var textArea: TextArea by singleAssign()
 
     override val root = borderpane {
         center {
-            textArea = boardTextArea(model)
+            textArea = boardTextArea(vm.board.text)
         }
         left {
             vbox {
                 hbox {
                     iconButton(Icons.TRASH) {
-                        action { controller.deleteAll(board) }
+                        action { vm.deleteAll() }
                     }
                 }
             }
@@ -46,7 +41,7 @@ class BoardView : View("Board") {
                 top {
                     iconButton(Icons.QUIT) {
                         action {
-                            controller.close()
+                            vm.close()
                         }
                     }
                 }
