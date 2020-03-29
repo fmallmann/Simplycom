@@ -1,13 +1,13 @@
 package de.fma.simplycom.main.components
 
-import de.fma.simplycom.board.controller.BoardController
+import de.fma.simplycom.board.model.Board
 import de.fma.simplycom.common.components.backspaceButton
 import de.fma.simplycom.common.components.enterButton
 import de.fma.simplycom.common.components.letterButton
 import de.fma.simplycom.common.components.numbersButton
 import de.fma.simplycom.common.components.shiftButton
 import de.fma.simplycom.common.components.spaceButton
-import tornadofx.Fragment
+import tornadofx.View
 import tornadofx.action
 import tornadofx.c
 import tornadofx.gridpane
@@ -15,79 +15,85 @@ import tornadofx.gridpaneConstraints
 import tornadofx.row
 import tornadofx.style
 
-class UppercaseLettersKeyboard : Fragment() {
+class UppercaseLettersKeyboard : View() {
 
-    private val controller: BoardController by inject()
+    private val board: Board by param()
 
     override val root = gridpane {
         row {
-            letterButton("Q", controller.board)
-            letterButton("W", controller.board)
-            letterButton("E", controller.board)
-            letterButton("R", controller.board)
-            letterButton("T", controller.board)
-            letterButton("Z", controller.board)
-            letterButton("U", controller.board)
-            letterButton("I", controller.board)
-            letterButton("O", controller.board)
-            letterButton("P", controller.board)
-            letterButton("7", controller.board)
-            letterButton("8", controller.board)
-            letterButton("9", controller.board)
+            letterButton("Q", board)
+            letterButton("W", board)
+            letterButton("E", board)
+            letterButton("R", board)
+            letterButton("T", board)
+            letterButton("Z", board)
+            letterButton("U", board)
+            letterButton("I", board)
+            letterButton("O", board)
+            letterButton("P", board)
+            letterButton("7", board)
+            letterButton("8", board)
+            letterButton("9", board)
         }
         row {
-            letterButton("A", controller.board)
-            letterButton("S", controller.board)
-            letterButton("D", controller.board)
-            letterButton("F", controller.board)
-            letterButton("G", controller.board)
-            letterButton("H", controller.board)
-            letterButton("J", controller.board)
-            letterButton("K", controller.board)
-            letterButton("L", controller.board)
-            letterButton("Ü", controller.board)
-            letterButton("4", controller.board)
-            letterButton("5", controller.board)
-            letterButton("6", controller.board)
+            letterButton("A", board)
+            letterButton("S", board)
+            letterButton("D", board)
+            letterButton("F", board)
+            letterButton("G", board)
+            letterButton("H", board)
+            letterButton("J", board)
+            letterButton("K", board)
+            letterButton("L", board)
+            letterButton("Ü", board)
+            letterButton("4", board)
+            letterButton("5", board)
+            letterButton("6", board)
         }
         row {
-            letterButton("Ä", controller.board)
-            letterButton("SS", controller.board)
-            letterButton("Y", controller.board)
-            letterButton("X", controller.board)
-            letterButton("C", controller.board)
-            letterButton("V", controller.board)
-            letterButton("B", controller.board)
-            letterButton("N", controller.board)
-            letterButton("M", controller.board)
-            letterButton("Ö", controller.board)
-            letterButton("1", controller.board)
-            letterButton("2", controller.board)
-            letterButton("3", controller.board)
+            letterButton("Ä", board)
+            letterButton("SS", board)
+            letterButton("Y", board)
+            letterButton("X", board)
+            letterButton("C", board)
+            letterButton("V", board)
+            letterButton("B", board)
+            letterButton("N", board)
+            letterButton("M", board)
+            letterButton("Ö", board)
+            letterButton("1", board)
+            letterButton("2", board)
+            letterButton("3", board)
         }
         row {
             shiftButton {
-                action { replaceWith<LowercaseLettersKeyboard>() }
+                action {
+                    val lowercaseLettersKeyboard = find<LowercaseLettersKeyboard>(mapOf("board" to board))
+                    replaceWith(lowercaseLettersKeyboard)
+                }
                 style {
                     backgroundColor += c("lightblue")
                 }
             }
             numbersButton {
-                action { replaceWith<NumbersKeyboard>() }
+                action {
+                    val numbersKeyboard = find<NumbersKeyboard>(mapOf("board" to board))
+                    replaceWith(numbersKeyboard)
+                }
             }
-            enterButton(controller.board)
-            spaceButton(controller.board) {
+            enterButton(board)
+            spaceButton(board) {
                 gridpaneConstraints {
                     columnSpan = 3
                 }
             }
-            backspaceButton(controller.board)
-            letterButton(".", controller.board)
-            letterButton(",", controller.board)
-            letterButton("?", controller.board)
-            letterButton("!", controller.board)
-            letterButton(":", controller.board)
-            letterButton("0", controller.board)
+            backspaceButton(board)
+            letterButton(".", board)
+            letterButton(",", board)
+            letterButton("?", board)
+            letterButton("!", board)
+            letterButton(":", board)
+            letterButton("0", board)
         }
     }
 }

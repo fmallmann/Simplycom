@@ -7,14 +7,12 @@ import kotlin.system.exitProcess
 
 class BoardController : Controller() {
 
-    val board = Board()
-
     fun close() {
         Platform.exit();
         exitProcess(0);
     }
 
-    fun deleteAll() {
+    fun deleteAll(board: Board) {
         board.text = ""
     }
 }

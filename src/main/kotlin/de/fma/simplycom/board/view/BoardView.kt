@@ -2,9 +2,11 @@ package de.fma.simplycom.board.view
 
 import de.fma.simplycom.board.components.boardTextArea
 import de.fma.simplycom.board.controller.BoardController
+import de.fma.simplycom.board.model.Board
 import de.fma.simplycom.board.model.BoardModel
 import de.fma.simplycom.common.components.Icons
 import de.fma.simplycom.common.components.iconButton
+import de.fma.simplycom.common.components.scrollButtons
 import javafx.scene.control.TextArea
 import tornadofx.View
 import tornadofx.action
@@ -21,7 +23,8 @@ import tornadofx.vbox
 class BoardView : View("Board") {
 
     private val controller: BoardController by inject()
-    private val model = BoardModel(controller.board)
+    private val board: Board by param()
+    private val model = BoardModel(board)
 
     private var textArea: TextArea by singleAssign()
 
@@ -33,9 +36,8 @@ class BoardView : View("Board") {
             vbox {
                 hbox {
                     iconButton(Icons.TRASH) {
-                        action { controller.deleteAll() }
+                        action { controller.deleteAll(board) }
                     }
-                    iconButton(Icons.EMAIL) {}
                 }
             }
         }
@@ -49,20 +51,7 @@ class BoardView : View("Board") {
                     }
                 }
                 bottom {
-                    vbox {
-                        iconButton(Icons.ALL_SCROLL_UP) {
-                            action { textArea.scrollTop = Double.MIN_VALUE }
-                        }
-                        iconButton(Icons.SCROLL_UP) {
-                            action { textArea.scrollTop -= 60.0 }
-                        }
-                        iconButton(Icons.SCROLL_DOWN) {
-                            action { textArea.scrollTop += 60.0 }
-                        }
-                        iconButton(Icons.ALL_SCROLL_DOWM) {
-                            action { textArea.scrollTop = Double.MAX_VALUE }
-                        }
-                    }
+                    scrollButtons(textArea)
                 }
             }
         }
