@@ -11,7 +11,9 @@ class MyApp : App(MainView::class, BoardViewStyles::class, BoardComponentStyles:
 
     override fun start(stage: Stage) {
         super.start(stage)
-        stage.isFullScreen = true
+        stage.width = 960.0
+        stage.height = 540.0
+        stage.isResizable = false
     }
 }
 

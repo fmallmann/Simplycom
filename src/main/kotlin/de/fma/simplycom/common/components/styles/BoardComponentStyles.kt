@@ -9,13 +9,13 @@ import tornadofx.px
 class BoardComponentStyles: Stylesheet() {
     companion object {
         val iconButton by cssclass()
-        val letterButton by cssclass()
+        val boardButton by cssclass()
     }
 
     init {
-        letterButton {
+        boardButton {
             fontSize = 30.pt
-            padding = box(10.px, 0.px)
+            padding = box(0.px)
         }
 
         iconButton {

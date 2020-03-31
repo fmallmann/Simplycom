@@ -19,7 +19,7 @@ fun EventTarget.boardButton(letter: String, op: ButtonBase.() -> Unit = {}) {
     button(letter) {
         useMaxWidth = true
         isFocusTraversable = false
-        addClass(BoardComponentStyles.letterButton)
+        addClass(BoardComponentStyles.boardButton)
         gridpaneColumnConstraints {
             percentWidth = 100.0
         }

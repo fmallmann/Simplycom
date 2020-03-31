@@ -82,8 +82,8 @@ fun EventTarget.backspaceIcon(): ImageView {
 
 fun EventTarget.iconImageView(iconUri: String, rotation: Double = 0.0): ImageView {
     return imageview(iconUri) {
-        fitWidth = 70.0
-        fitHeight = 70.0
+        fitWidth = 50.0
+        fitHeight = 50.0
         rotate = rotation
     }
 }
