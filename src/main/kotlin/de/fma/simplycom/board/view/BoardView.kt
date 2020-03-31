@@ -33,6 +33,9 @@ class BoardView : View("Board") {
                     iconButton(Icons.TRASH) {
                         action { vm.deleteAll() }
                     }
+                    iconButton(Icons.PREFERENCES) {
+                        action { replaceWith<PreferencesView>() }
+                    }
                 }
             }
         }
