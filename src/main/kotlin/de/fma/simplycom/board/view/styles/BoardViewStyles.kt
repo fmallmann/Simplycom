@@ -10,6 +10,7 @@ import tornadofx.px
 class BoardViewStyles : Stylesheet() {
     companion object {
         val mainText by cssclass()
+        val preferencesText by cssclass()
     }
 
     init {
@@ -21,6 +22,10 @@ class BoardViewStyles : Stylesheet() {
             scrollPane {
                 hBarPolicy = ScrollPane.ScrollBarPolicy.NEVER
             }
+        }
+
+        preferencesText {
+            fontSize = 24.pt
         }
     }
 }

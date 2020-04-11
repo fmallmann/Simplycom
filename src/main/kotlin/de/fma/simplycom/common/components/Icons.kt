@@ -26,7 +26,8 @@ enum class Icons {
     ANSWER_ALL,
     FORWARD,
     ADD,
-    PREFERENCES
+    PREFERENCES,
+    CHECKMARK
 }
 
 fun EventTarget.icon(icon: Icons): ImageView {
@@ -53,8 +54,11 @@ fun EventTarget.icon(icon: Icons): ImageView {
         Icons.FORWARD -> forwardIcon()
         Icons.ADD -> addIcon()
         Icons.PREFERENCES -> preferencesIcon()
+        Icons.CHECKMARK -> checkmarkIcon()
     }
 }
+
+fun EventTarget.checkmarkIcon(): ImageView = iconImageView("/assets/checkmark.png")
 
 fun EventTarget.preferencesIcon(): ImageView = iconImageView("/assets/preferences.png")
 
