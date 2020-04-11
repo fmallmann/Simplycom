@@ -19,7 +19,7 @@ class MailStyles : Stylesheet() {
         }
 
         mailList {
-            fontSize = 30.pt
+            fontSize = 24.pt
             listCell {
                 padding = box(5.px, 10.px)
             }

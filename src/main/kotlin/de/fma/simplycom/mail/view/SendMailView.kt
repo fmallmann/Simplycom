@@ -3,6 +3,7 @@ package de.fma.simplycom.mail.view
 import de.fma.simplycom.board.components.boardTextArea
 import de.fma.simplycom.common.components.Icons
 import de.fma.simplycom.common.components.iconButton
+import de.fma.simplycom.common.components.keyboardPane
 import de.fma.simplycom.common.components.scrollButtons
 import de.fma.simplycom.mail.components.mailPane
 import de.fma.simplycom.mail.view.styles.MailStyles
@@ -33,34 +34,36 @@ class SendMailView : View("Send Mail") {
         vm.sendMail.text.value = scope.text
     }
 
-    override val root = mailPane(this) {
-        borderpane {
-            center {
-                vbox {
-                    textfield(vm.sendMail.subject) {
-                        addClass(MailStyles.subject)
+    override val root = keyboardPane {
+        mailPane(this@SendMailView) {
+            borderpane {
+                center {
+                    vbox {
+                        textfield(vm.sendMail.subject) {
+                            addClass(MailStyles.subject)
+                        }
+                        textArea = boardTextArea(vm.sendMail.text)
                     }
-                    textArea = boardTextArea(vm.sendMail.text)
                 }
-            }
-            left {
-                vbox {
-                    iconButton(Icons.CONTACTS) {}
-                    iconButton(Icons.CHOOSE_FILE) {}
-                    iconButton(Icons.SEND_MAIL) {}
+                left {
+                    vbox {
+                        iconButton(Icons.CONTACTS) {}
+                        iconButton(Icons.CHOOSE_FILE) {}
+                        iconButton(Icons.SEND_MAIL) {}
+                    }
                 }
-            }
-            right {
-                borderpane {
-                    top {
-                        iconButton(Icons.CLOSE) {
-                            action {
-                                replaceWith(scope.calledFrom)
+                right {
+                    borderpane {
+                        top {
+                            iconButton(Icons.CLOSE) {
+                                action {
+                                    replaceWith(scope.calledFrom)
+                                }
                             }
                         }
-                    }
-                    bottom {
-                        scrollButtons(textArea)
+                        bottom {
+                            scrollButtons(textArea)
+                        }
                     }
                 }
             }
