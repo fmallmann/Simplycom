@@ -54,7 +54,10 @@ class PreferencesView : View("Einstellungen") {
                     top {
                         hbox {
                             iconButton(Icons.CHECKMARK) {
-                                action { vm.save() }
+                                action {
+                                    vm.save()
+                                    replaceWith<BoardView>()
+                                }
                             }
                             iconButton(Icons.CLOSE) {
                                 action { replaceWith<BoardView>() }
@@ -78,8 +81,11 @@ fun EventTarget.emailPreferences(mailProperties: MailProperties) {
         fitToParentSize()
         fieldset("Email") {
             addClass(BoardViewStyles.preferencesText)
-            field("Hostname") {
-                textfield(mailProperties.hostname)
+            field("IMAP Hostname") {
+                textfield(mailProperties.imapHostname)
+            }
+            field("SMTP Hostname") {
+                textfield(mailProperties.smtpHostname)
             }
             field("SSL verwenden") {
                 checkbox(property = mailProperties.enableSsl)
