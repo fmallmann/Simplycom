@@ -1,6 +1,8 @@
 package de.fma.simplycom.mail.viewmodel
 
 import com.sun.mail.imap.IMAPFolder
+import de.fma.simplycom.board.viewmodel.MailPropertiesEntity
+import de.fma.simplycom.board.viewmodel.MailRepository
 import tornadofx.Controller
 import java.io.Closeable
 import java.util.Date
@@ -13,21 +15,44 @@ import javax.mail.internet.InternetAddress
 
 class MailService : Controller() {
 
-    val connectionInformation = ConnectionInformation("host", 993, "user", "pw")
-    val mailProperties = Properties()
+    val mailRepository: MailRepository by inject()
 
-    init {
-        mailProperties.setProperty("mail.imap.ssl.enable", "true")
+    fun sendMail(subject: String, body: String) {
+
     }
 
     fun receiveMails(): MutableList<MailInfo> {
         var mailInfos = mutableListOf<MailInfo>()
-        connect(connectionInformation, mailProperties) {
-            folder("INBOX") {
-                mailInfos = readAll().map { it.mailInfo }.toMutableList()
+        val mailPropertiesEntity = mailRepository.load()
+        return if (mailPropertiesEntity != null) {
+            val mailProperties = getMailProperties(mailPropertiesEntity)
+            val connectionInformation = getConnectionInformation(mailPropertiesEntity)
+            connect(connectionInformation, mailProperties) {
+                folder("INBOX") {
+                    mailInfos = readAll().map { it.mailInfo }.toMutableList()
+                }
             }
+            mailInfos
+        } else {
+            mutableListOf()
         }
-        return mailInfos
+    }
+
+    private fun getConnectionInformation(mailPropertiesEntity: MailPropertiesEntity): ConnectionInformation {
+        return ConnectionInformation(
+                mailPropertiesEntity.imapHostname,
+                mailPropertiesEntity.port,
+                mailPropertiesEntity.username,
+                mailPropertiesEntity.password
+        )
+    }
+
+    private fun getMailProperties(mailPropertiesEntity: MailPropertiesEntity): Properties {
+        val mailProperties = Properties()
+        if (mailPropertiesEntity.enableSsl) {
+            mailProperties.setProperty("mail.imap.ssl.enable", "true")
+        }
+        return mailProperties
     }
 }
 

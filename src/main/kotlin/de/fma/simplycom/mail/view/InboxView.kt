@@ -14,12 +14,17 @@ import tornadofx.borderpane
 import tornadofx.cache
 import tornadofx.center
 import tornadofx.find
+import tornadofx.gridpane
+import tornadofx.gridpaneColumnConstraints
+import tornadofx.gridpaneConstraints
 import tornadofx.label
 import tornadofx.left
 import tornadofx.listview
 import tornadofx.right
+import tornadofx.row
 import tornadofx.top
 import tornadofx.vbox
+import java.text.SimpleDateFormat
 
 class InboxView : View("Mail") {
 
@@ -58,7 +63,30 @@ class InboxView : View("Mail") {
                     addClass(MailStyles.mailList)
                     cellFormat {
                         graphic = cache {
-                            label("${it.subject}/${it.from.personal}")
+                            gridpane {
+                                row {
+                                    label(it.subject) {
+                                        gridpaneConstraints {
+                                            columnSpan = 2
+                                        }
+                                        gridpaneColumnConstraints {
+                                            percentWidth = 100.0
+                                        }
+                                    }
+                                }
+                                row {
+                                    label(it.from.personal) {
+                                        gridpaneColumnConstraints {
+                                            percentWidth = 100.0
+                                        }
+                                    }
+                                    label(SimpleDateFormat("dd.MM.yyyy").format(it.date)) {
+                                        gridpaneColumnConstraints {
+                                            percentWidth = 100.0
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
