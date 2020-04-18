@@ -79,25 +79,37 @@ class PreferencesView : View("Einstellungen") {
 fun EventTarget.emailPreferences(mailProperties: MailProperties) {
     form {
         fitToParentSize()
-        fieldset("Email") {
-            addClass(BoardViewStyles.preferencesText)
-            field("IMAP Hostname") {
-                textfield(mailProperties.imapHostname)
-            }
-            field("SMTP Hostname") {
-                textfield(mailProperties.smtpHostname)
-            }
-            field("SSL verwenden") {
-                checkbox(property = mailProperties.enableSsl)
-            }
-            field("Port") {
-                textfield(mailProperties.port)
+        addClass(BoardViewStyles.preferencesText)
+        fieldset("Allgemein") {
+            field("Anzeigename") {
+                textfield(mailProperties.shownName)
             }
             field("Benutzername") {
                 textfield(mailProperties.username)
             }
             field("Passwort") {
                 passwordfield(mailProperties.password)
+            }
+        }
+        fieldset("IMAP") {
+            field("Hostname") {
+                textfield(mailProperties.imapHostname)
+            }
+            field("SSL verwenden") {
+                checkbox(property = mailProperties.enableSsl) {
+                    action { if (mailProperties.enableSsl.value) mailProperties.imapPort.value = 993 else mailProperties.imapPort.value = 443 }
+                }
+            }
+            field("Port") {
+                textfield(mailProperties.imapPort)
+            }
+        }
+        fieldset("SMPT") {
+            field("Hostname") {
+                textfield(mailProperties.smtpHostname)
+            }
+            field("Port") {
+                textfield(mailProperties.smtpPort)
             }
         }
     }

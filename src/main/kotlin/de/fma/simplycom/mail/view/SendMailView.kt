@@ -16,9 +16,11 @@ import tornadofx.addClass
 import tornadofx.borderpane
 import tornadofx.bottom
 import tornadofx.center
+import tornadofx.label
 import tornadofx.left
 import tornadofx.right
 import tornadofx.singleAssign
+import tornadofx.stringBinding
 import tornadofx.textfield
 import tornadofx.top
 import tornadofx.vbox
@@ -39,17 +41,33 @@ class SendMailView : View("Send Mail") {
             borderpane {
                 center {
                     vbox {
+                        label(vm.sendMail.receiver.stringBinding { it ?: "Kein Empfänger ausgewählt!" }) {
+                            addClass(MailStyles.receiver)
+                        }
                         textfield(vm.sendMail.subject) {
-                            addClass(MailStyles.subject)
+                            addClass(MailStyles.mailText)
                         }
                         textArea = boardTextArea(vm.sendMail.text)
                     }
                 }
                 left {
                     vbox {
-                        iconButton(Icons.CONTACTS) {}
+                        iconButton(Icons.CONTACTS) {
+                            action {
+                                replaceWith<ReceiverView>()
+                            }
+                        }
                         iconButton(Icons.CHOOSE_FILE) {}
-                        iconButton(Icons.SEND_MAIL) {}
+                        iconButton(Icons.SEND_MAIL) {
+                            action {
+                                try {
+                                    vm.sendMail()
+                                    replaceWith(scope.calledFrom)
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                }
+                            }
+                        }
                     }
                 }
                 right {

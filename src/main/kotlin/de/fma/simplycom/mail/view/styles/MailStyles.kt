@@ -8,12 +8,13 @@ import tornadofx.px
 
 class MailStyles : Stylesheet() {
     companion object {
-        val subject by cssclass()
+        val mailText by cssclass()
         val mailList by cssclass()
+        val receiver by cssclass()
     }
 
     init {
-        subject {
+        mailText {
             fontSize = 30.pt
             padding = box(5.px, 10.px)
         }
@@ -23,6 +24,10 @@ class MailStyles : Stylesheet() {
             listCell {
                 padding = box(5.px, 10.px)
             }
+        }
+
+        receiver {
+            fontSize = 20.pt
         }
     }
 }

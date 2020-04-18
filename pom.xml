@@ -38,11 +38,6 @@
                 <version>11</version>
             </dependency>
             <dependency>
-                <groupId>io.github.slothLabs</groupId>
-                <artifactId>kotlin-mail</artifactId>
-                <version>0.1.0</version>
-            </dependency>
-            <dependency>
                 <groupId>org.jetbrains.exposed</groupId>
                 <artifactId>exposed-core</artifactId>
                 <version>0.23.1</version>
@@ -62,6 +57,11 @@
                 <artifactId>h2</artifactId>
                 <version>1.4.200</version>
             </dependency>
+            <dependency>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>jakarta.mail</artifactId>
+                <version>1.6.5</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -80,10 +80,6 @@
             <artifactId>javafx-controls</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.github.slothLabs</groupId>
-            <artifactId>kotlin-mail</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.jetbrains.exposed</groupId>
             <artifactId>exposed-core</artifactId>
         </dependency>
@@ -99,7 +95,10 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -28,13 +28,15 @@ class MailRepository : Controller() {
         return mailPreferencesEntity
     }
 
-    fun save(imapHostname: String, smtpHostname: String, port: Int, enableSsl: Boolean, username: String, password: String) {
+    fun save(shownName: String, imapHostname: String, smtpHostname: String, imapPort: Int, smtpPort: Int, enableSsl: Boolean, username: String, password: String) {
         transaction {
             MailPropertiesTable.deleteAll()
             MailPropertiesEntity.new {
+                this.shownName = shownName
                 this.imapHostname = imapHostname
                 this.smtpHostname = smtpHostname
-                this.port = port
+                this.imapPort = imapPort
+                this.smtpPort = smtpPort
                 this.enableSsl = enableSsl
                 this.username = username
                 this.password = password
@@ -44,9 +46,11 @@ class MailRepository : Controller() {
 }
 
 object MailPropertiesTable : IntIdTable("mailProperties") {
+    val shownName = varchar("shownName", 255)
     val imapHostname = varchar("imapHostname", 255)
     val smtpHostname = varchar("smtpHostname", 255)
-    val port = integer("port")
+    val imapPort = integer("imapPort")
+    val smtpPort = integer("smtpPort")
     val enableSsl = bool("enableSsl")
     val username = varchar("username", 255)
     val password = varchar("password", 255)
@@ -55,9 +59,11 @@ object MailPropertiesTable : IntIdTable("mailProperties") {
 class MailPropertiesEntity(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<MailPropertiesEntity>(MailPropertiesTable)
 
+    var shownName by MailPropertiesTable.shownName
     var imapHostname by MailPropertiesTable.imapHostname
     var smtpHostname by MailPropertiesTable.smtpHostname
-    var port by MailPropertiesTable.port
+    var imapPort by MailPropertiesTable.imapPort
+    var smtpPort by MailPropertiesTable.smtpPort
     var enableSsl by MailPropertiesTable.enableSsl
     var username by MailPropertiesTable.username
     var password by MailPropertiesTable.password
